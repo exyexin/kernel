@@ -1,0 +1,60 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
+ *
+ */
+
+/dts-v1/;
+
+#include "rk3588-8917-base.dtsi"
+/ {
+	model = "Rockchip RK3588 8917";
+	compatible = "rockchip,rk3588-8917", "rockchip,rk3588";
+	ryd_gpio {
+		compatible = "ryd_gpio_control";
+		#address-cells = <1>;
+		#size-cells = <0>;
+/*
+		pinctrl-names = "default";
+		pinctrl-0 = <&rs485_ctl &hub_rst_gpio >;
+*/
+		status = "okay";
+		
+		hub_rst_gpio {
+			gpio = <&gpio3 RK_PB2 GPIO_ACTIVE_HIGH>;
+			/* can set dir_in, default is dir_out */
+			/* pull_cfg: <0>=null, <1>=pulldown, <2>=pullup */
+			pull_cfg = <1>;
+			dir_out;
+		};	
+	};
+};
+
+
+/* others */
+&wdt {
+   status = "okay";
+};
+
+&hdmi0 {
+	/* HDMI0_TX_ON_H */
+	enable-gpios = <&gpio4 RK_PB2 GPIO_ACTIVE_HIGH>;
+	status = "okay";
+};
+
+&hdmi0_in_vp0 {
+	status = "okay";
+};
+
+&hdmi0_sound {
+	status = "okay";
+};
+&hdptxphy_hdmi0 {
+	status = "okay";
+};
+&hdmi0_sound {
+	status = "okay";
+};
+&route_hdmi0{
+	status = "okay";
+};
